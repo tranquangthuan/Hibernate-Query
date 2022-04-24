@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC  
+          "-//Hibernate/Hibernate Configuration DTD 5.3//EN"  
+          "http://hibernate.sourceforge.net/hibernate-configuration-5.3.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property>
+		<property name="hibernate.connection.url">jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=hibernate</property>
+		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+		<property name="connection.username">sa</property>
+		<property name="connection.password">gau@123@ABCD</property>
+		<property name="show_sql">true</property>
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+
+		<mapping class="com.thuan.hibernate.entity.Employee"></mapping>
+
+	</session-factory>
+</hibernate-configuration>
