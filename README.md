@@ -1,3 +1,3 @@
 # Hibernate
-Hibernate trainning
+Hibernate query
 Example with MS Server
