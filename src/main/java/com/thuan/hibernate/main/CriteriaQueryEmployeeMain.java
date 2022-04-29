@@ -18,11 +18,11 @@ import com.thuan.hibernate.utils.HibernateUtils;
 public class CriteriaQueryEmployeeMain {
 
 	public static void main(String[] args) {
-		withCreateCriteria();
-		withCriteriaBuilder();
-		withCriteriaBuilderWithAge();
-		withCriteriaBuilderWithAgeAndSalary();
-		withCriteriaBuilderWithAgeOrSalary();
+//		withCreateCriteria();
+//		withCriteriaBuilder();
+//		withCriteriaBuilderWithAge();
+//		withCriteriaBuilderWithAgeAndSalary();
+//		withCriteriaBuilderWithAgeOrSalary();
 		withCriteriaBuilderWithOrder();
 	}
 
@@ -82,8 +82,8 @@ public class CriteriaQueryEmployeeMain {
 		CriteriaQuery<Employee> cr = cb.createQuery(Employee.class);
 		Root<Employee> root = cr.from(Employee.class);
 		cr.select(root);
-		Predicate age = cb.equal(root.get("age"), 35);
-		Predicate salary = cb.equal(root.get("salary"), 3000);
+		Predicate age = cb.equal(root.get("age"), 30);
+		Predicate salary = cb.equal(root.get("salary"), 1000);
 		Predicate ageAndSalary = cb.and(age, salary);
 		cr.where(ageAndSalary);
 
@@ -107,7 +107,6 @@ public class CriteriaQueryEmployeeMain {
 		Predicate salary = cb.equal(root.get("salary"), 3000);
 		Predicate ageAndSalary = cb.or(age, salary);
 		cr.where(ageAndSalary);
-		cr.orderBy(cb.asc(root.get("age")));
 
 		Query<Employee> query = session.createQuery(cr);
 		List<Employee> employees = query.getResultList();
@@ -126,10 +125,10 @@ public class CriteriaQueryEmployeeMain {
 		Root<Employee> root = cr.from(Employee.class);
 		cr.select(root);
 		Predicate age = cb.equal(root.get("age"), 35);
-		Predicate salary = cb.equal(root.get("salary"), 3000);
+		Predicate salary = cb.ge(root.get("salary"), 2000);
 		Predicate ageAndSalary = cb.or(age, salary);
 		cr.where(ageAndSalary);
-		cr.orderBy(cb.asc(root.get("salary")));
+		cr.orderBy(cb.desc(root.get("salary")));
 
 		Query<Employee> query = session.createQuery(cr);
 		List<Employee> employees = query.getResultList();

@@ -12,11 +12,12 @@ import com.thuan.hibernate.utils.HibernateUtils;
 public class SelectEmployeeMain {
 
 	public static void main(String[] args) {
-		withFrom();
-		withAlias();
-		withParameter();
-		withMax();
-		withAvg();
+//		withFrom();
+//		withAlias();
+//		withParameter();
+//		withMax();
+//		withAvg();
+		withPaging();
 	}
 
 	private static void withFrom() {
@@ -80,6 +81,21 @@ public class SelectEmployeeMain {
 		Query<Double> query = session.createQuery(hql, Double.class);
 		Double maxSalary = query.getSingleResult();
 		System.out.println("Avg salary = " + maxSalary);
+
+		factory.close();
+		session.close();
+	}
+
+	private static void withPaging() {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+		Session session = factory.openSession();
+
+		String hql = "FROM Employee AS E";
+		Query<Employee> query = session.createQuery(hql, Employee.class);
+		query.setFirstResult(3);// offset
+		query.setMaxResults(3);// limit
+		List<Employee> employees = query.getResultList();
+		employees.forEach(System.out::println);
 
 		factory.close();
 		session.close();
