@@ -41,5 +41,4 @@ public class InsertEmployeeMain {
 		factory.close();
 		session.close();
 	}
-
 }

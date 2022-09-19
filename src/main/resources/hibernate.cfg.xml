@@ -5,7 +5,7 @@
 
 <hibernate-configuration>
 	<session-factory>
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property>
 		<property name="hibernate.connection.url">jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=hibernate-criteria;encrypt=true;trustServerCertificate=true</property>
 		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
