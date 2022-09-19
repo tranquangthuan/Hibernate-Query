@@ -18,11 +18,11 @@ import com.thuan.hibernate.utils.HibernateUtils;
 public class CriteriaQueryEmployeeMain {
 
 	public static void main(String[] args) {
-//		withCreateCriteria();
-//		withCriteriaBuilder();
-//		withCriteriaBuilderWithAge();
-//		withCriteriaBuilderWithAgeAndSalary();
-//		withCriteriaBuilderWithAgeOrSalary();
+		withCreateCriteria();
+		withCriteriaBuilder();
+		withCriteriaBuilderWithAge();
+		withCriteriaBuilderWithAgeAndSalary();
+		withCriteriaBuilderWithAgeOrSalary();
 		withCriteriaBuilderWithOrder();
 	}
 

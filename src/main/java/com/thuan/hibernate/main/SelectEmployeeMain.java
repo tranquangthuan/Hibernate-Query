@@ -12,11 +12,11 @@ import com.thuan.hibernate.utils.HibernateUtils;
 public class SelectEmployeeMain {
 
 	public static void main(String[] args) {
-//		withFrom();
-//		withAlias();
-//		withParameter();
-//		withMax();
-//		withAvg();
+		withFrom();
+		withAlias();
+		withParameter();
+		withMax();
+		withAvg();
 		withPaging();
 	}
 

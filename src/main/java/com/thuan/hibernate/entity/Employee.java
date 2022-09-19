@@ -1,9 +1,13 @@
 package com.thuan.hibernate.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Employee {
@@ -19,17 +23,22 @@ public class Employee {
 
 	private String address;
 
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "department_id", referencedColumnName = "id")
+	private Department department;
+
 	public Employee() {
 		super();
 	}
 
-	public Employee(String name, byte age, int salary, String role, String address) {
+	public Employee(String name, byte age, int salary, String role, String address, Department department) {
 		super();
 		this.name = name;
 		this.age = age;
 		this.salary = salary;
 		this.role = role;
 		this.address = address;
+		this.department = department;
 	}
 
 	public Integer getId() {
