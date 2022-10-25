@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import com.thuan.hibernate.entity.Employee;
+import com.thuan.hibernate.model.EmpNameAndDeptName;
 import com.thuan.hibernate.utils.HibernateUtils;
 
 public class SelectEmployeeMain {
@@ -18,6 +19,8 @@ public class SelectEmployeeMain {
 		withMax();
 		withAvg();
 		withPaging();
+		withEmpNameAndDeptName();
+		withEmpNameAndDeptNameUsingConstructor();
 	}
 
 	private static void withFrom() {
@@ -29,7 +32,6 @@ public class SelectEmployeeMain {
 		List<Employee> employees = query.getResultList();
 		employees.forEach(System.out::println);
 
-		factory.close();
 		session.close();
 	}
 
@@ -42,7 +44,6 @@ public class SelectEmployeeMain {
 		List<Employee> employees = query.getResultList();
 		employees.forEach(System.out::println);
 
-		factory.close();
 		session.close();
 	}
 
@@ -56,7 +57,6 @@ public class SelectEmployeeMain {
 		List<Employee> employees = query.getResultList();
 		employees.forEach(System.out::println);
 
-		factory.close();
 		session.close();
 	}
 
@@ -69,7 +69,6 @@ public class SelectEmployeeMain {
 		Integer maxSalary = query.getSingleResult();
 		System.out.println("Max salary = " + maxSalary);
 
-		factory.close();
 		session.close();
 	}
 
@@ -82,7 +81,6 @@ public class SelectEmployeeMain {
 		Double maxSalary = query.getSingleResult();
 		System.out.println("Avg salary = " + maxSalary);
 
-		factory.close();
 		session.close();
 	}
 
@@ -97,7 +95,34 @@ public class SelectEmployeeMain {
 		List<Employee> employees = query.getResultList();
 		employees.forEach(System.out::println);
 
-		factory.close();
+		session.close();
+	}
+
+	private static void withEmpNameAndDeptName() {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+		Session session = factory.openSession();
+
+		String hql = "SELECT E.name, E.department.name FROM Employee AS E";
+		Query<Object[]> query = session.createQuery(hql, Object[].class);
+		List<Object[]> employees = query.list();
+		for (Object[] object : employees) {
+			System.out.println(object[0] + " " + object[1]);
+		}
+
+		session.close();
+	}
+
+	private static void withEmpNameAndDeptNameUsingConstructor() {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+		Session session = factory.openSession();
+
+		String hql = "SELECT new com.thuan.hibernate.model.EmpNameAndDeptName(E.name, E.department.name) FROM Employee AS E";
+		Query<EmpNameAndDeptName> query = session.createQuery(hql, EmpNameAndDeptName.class);
+		List<EmpNameAndDeptName> employees = query.list();
+		for (EmpNameAndDeptName emp : employees) {
+			System.out.println(emp);
+		}
+
 		session.close();
 	}
 }
