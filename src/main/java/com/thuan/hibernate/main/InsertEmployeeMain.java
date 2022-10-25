@@ -27,6 +27,8 @@ public class InsertEmployeeMain {
 		Employee emp6 = new Employee("Steven", (byte) 35, 1000, "Test", "USA", department1);
 		Employee emp7 = new Employee("Miss Thuy", (byte) 35, 1000, "HR", "VN", department2);
 		Employee emp8 = new Employee("Ms Van Anh", (byte) 35, 1000, "HR", "USA", department2);
+		Employee emp9 = new Employee("Ms Unknown Dept From VN", (byte) 35, 1000, "HR", "VN", null);
+		Employee emp10 = new Employee("MR Unknown Dept From USA", (byte) 35, 1000, "HR", "USA", null);
 
 		session.save(emp1);
 		session.save(emp2);
@@ -36,6 +38,8 @@ public class InsertEmployeeMain {
 		session.save(emp6);
 		session.save(emp7);
 		session.save(emp8);
+		session.save(emp9);
+		session.save(emp10);
 		t.commit();
 		System.out.println("successfully saved");
 		factory.close();

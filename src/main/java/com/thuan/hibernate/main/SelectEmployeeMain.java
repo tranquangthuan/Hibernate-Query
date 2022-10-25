@@ -2,6 +2,7 @@ package com.thuan.hibernate.main;
 
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -21,6 +22,7 @@ public class SelectEmployeeMain {
 		withPaging();
 		withEmpNameAndDeptName();
 		withEmpNameAndDeptNameUsingConstructor();
+		withLeftJoin();
 	}
 
 	private static void withFrom() {
@@ -119,9 +121,22 @@ public class SelectEmployeeMain {
 		String hql = "SELECT new com.thuan.hibernate.model.EmpNameAndDeptName(E.name, E.department.name) FROM Employee AS E";
 		Query<EmpNameAndDeptName> query = session.createQuery(hql, EmpNameAndDeptName.class);
 		List<EmpNameAndDeptName> employees = query.list();
-		for (EmpNameAndDeptName emp : employees) {
-			System.out.println(emp);
-		}
+		System.out.println(
+				"Method withEmpNameAndDeptNameUsingConstructor(), list size = " + CollectionUtils.size(employees));
+		employees.forEach(System.out::println);
+
+		session.close();
+	}
+
+	private static void withLeftJoin() {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+		Session session = factory.openSession();
+
+		String hql = "SELECT new com.thuan.hibernate.model.EmpNameAndDeptName(E.name, D.name) FROM Employee E Left join Department D On E.department = D";
+		Query<EmpNameAndDeptName> query = session.createQuery(hql, EmpNameAndDeptName.class);
+		List<EmpNameAndDeptName> employees = query.list();
+		System.out.println("Method withLeftJoin(), list size = " + CollectionUtils.size(employees));
+		employees.forEach(System.out::println);
 
 		session.close();
 	}
