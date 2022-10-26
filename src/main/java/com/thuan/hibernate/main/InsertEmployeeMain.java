@@ -12,6 +12,11 @@ public class InsertEmployeeMain {
 
 	public static void main(String[] args) {
 
+		insertData();
+		selectAndUpdateEmp(10);
+	}
+
+	private static void insertData() {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
@@ -42,7 +47,22 @@ public class InsertEmployeeMain {
 		session.save(emp10);
 		t.commit();
 		System.out.println("successfully saved");
-		factory.close();
+		session.close();
+	}
+
+	public static void selectAndUpdateEmp(int employeeId) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+		Session session = factory.openSession();
+		Transaction t = session.beginTransaction();
+
+		System.out.println("Find Employee Information");
+		Employee em = session.find(Employee.class, employeeId);
+		System.out.println(em);
+		System.out.println("Update Employee");
+		em.setName("MR Unknown BBBB");
+		session.save(em);
+
+		t.commit();
 		session.close();
 	}
 }
