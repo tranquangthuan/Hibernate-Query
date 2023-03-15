@@ -14,15 +14,16 @@ import com.thuan.hibernate.utils.HibernateUtils;
 public class SelectEmployeeMain {
 
 	public static void main(String[] args) {
-		withFrom();
-		withAlias();
-		withParameter();
-		withMax();
-		withAvg();
-		withPaging();
-		withEmpNameAndDeptName();
-		withEmpNameAndDeptNameUsingConstructor();
-		withLeftJoin();
+//		withFrom();
+//		withAlias();
+		withAliasGroupByName();
+//		withParameter();
+//		withMax();
+//		withAvg();
+//		withPaging();
+//		withEmpNameAndDeptName();
+//		withEmpNameAndDeptNameUsingConstructor();
+//		withLeftJoin();
 	}
 
 	private static void withFrom() {
@@ -42,6 +43,18 @@ public class SelectEmployeeMain {
 		Session session = factory.openSession();
 
 		String hql = "FROM Employee AS E";
+		Query<Employee> query = session.createQuery(hql, Employee.class);
+		List<Employee> employees = query.getResultList();
+		employees.forEach(System.out::println);
+
+		session.close();
+	}
+
+	private static void withAliasGroupByName() {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+		Session session = factory.openSession();
+
+		String hql = "FROM Employee AS E ORDER BY E.name";
 		Query<Employee> query = session.createQuery(hql, Employee.class);
 		List<Employee> employees = query.getResultList();
 		employees.forEach(System.out::println);

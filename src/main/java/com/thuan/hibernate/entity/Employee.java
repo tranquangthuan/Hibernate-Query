@@ -23,7 +23,7 @@ public class Employee {
 
 	private String address;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "department_id", referencedColumnName = "id")
 	private Department department;
 
