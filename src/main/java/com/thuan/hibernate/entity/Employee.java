@@ -1,6 +1,7 @@
 package com.thuan.hibernate.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,6 +17,7 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(name = "emp_name")
 	private String name;
 	private byte age;
 	private int salary;

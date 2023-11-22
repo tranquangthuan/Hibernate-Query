@@ -7,9 +7,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries({ 
+	@NamedQuery(name = "DEPARTMENT_FIND_ALL", query = "FROM Department D"),
+	@NamedQuery(name = "DEPARTMENT_FIND_BY_NAME", query = "FROM Department D where D.name =:name") 
+	})
 public class Department {
 
 	@Id
