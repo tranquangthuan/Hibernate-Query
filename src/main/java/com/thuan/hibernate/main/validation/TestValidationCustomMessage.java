@@ -1,4 +1,4 @@
-package com.thuan.hibernate.main;
+package com.thuan.hibernate.main.validation;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -13,7 +13,7 @@ import org.hibernate.validator.resourceloading.AggregateResourceBundleLocator;
 
 import com.thuan.hibernate.entity.User;
 
-public class TestValidationCustomMessageMain {
+public class TestValidationCustomMessage {
 
 	public static void main(String[] args) {
 		// Custom Validator with message file name not default
