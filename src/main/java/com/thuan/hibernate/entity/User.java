@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Currency;
 import org.hibernate.validator.constraints.Range;
 
 import com.thuan.hibernate.annotation.Phone;
